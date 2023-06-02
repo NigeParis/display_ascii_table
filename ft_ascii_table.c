@@ -6,7 +6,7 @@
 /*   By: nigelrobinson <Nige@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 08:06:29 by nigelrobinson     #+#    #+#             */
-/*   Updated: 2023/06/02 18:37:10 by nigelrobinson    ###   ########.fr       */
+/*   Updated: 2023/06/02 19:06:04 by nigelrobinson    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define ASCII_NBR_MAX 126
 #define PRINTABLE_CHAR 32
 #define NBR_COLUMNS 6
-#define STRINGSIZE 103
+#define STRINGSIZE 107
 #define ASCII_DEL 34
 #define DEL 127
 
@@ -89,8 +89,8 @@ void	ft_print_non_printable_ascii(int *column_nbr, int current_char)
 	index = 0;
 	while ((index++) < STRINGSIZE)
 		char_symbol[index] = ("   NULSOHSTXETXEOTENQACKBELBS HT LF VT FF CR SO SI \
-DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US    DEL")[index];
-	if ((current_char) == ASCII_DEL)
+DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US       DEL")[index];
+	if (current_char == ASCII_DEL)
 		ft_putnbr(DEL);
 	else
 		ft_putnbr(current_char);
