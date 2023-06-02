@@ -6,7 +6,7 @@
 /*   By: nigelrobinson <Nige@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 08:06:29 by nigelrobinson     #+#    #+#             */
-/*   Updated: 2023/06/02 10:23:56 by nigelrobinson    ###   ########.fr       */
+/*   Updated: 2023/06/02 10:28:52 by nigelrobinson    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ void	ft_non_printable_char(int *counter, int ascii_number)
 		ft_putnbr((ascii_number-1));
 		ft_putchar(' ');
 	}
+	if (ascii_number < TEN)
+		ft_putchar(' ');
 	ft_putchar('-');
 	ft_putchar(' ');
 	write(1, &array[(ascii_number-1)], 3);
 	ft_putchar(' ');
-	if (ascii_number < TEN)
-		ft_putchar(' ');
 	ft_putchar('|');
 	ft_putchar(' ');
 	ft_putchar(' ');
