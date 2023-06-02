@@ -6,7 +6,7 @@
 /*   By: nigelrobinson <Nige@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 08:06:29 by nigelrobinson     #+#    #+#             */
-/*   Updated: 2023/06/02 19:06:04 by nigelrobinson    ###   ########.fr       */
+/*   Updated: 2023/06/02 19:37:30 by nigelrobinson    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ void	ft_print_printable_ascii(int *column_nbr, int current_char)
 
 void	ft_print_non_printable_ascii(int *column_nbr, int current_char)
 {
-	int		index;
-	char	char_symbol [STRINGSIZE];
+	int		str_pos;
+	char	char_str [STRINGSIZE];
 
-	index = 0;
-	while ((index++) < STRINGSIZE)
-		char_symbol[index] = ("   NULSOHSTXETXEOTENQACKBELBS HT LF VT FF CR SO SI \
-DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US       DEL")[index];
+	str_pos = 0;
+	while ((str_pos++) < STRINGSIZE)
+		char_str[str_pos] = ("   NULSOHSTXETXEOTENQACKBELBS HT LF VT FF CR SO SI \
+DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US       DEL")[str_pos];
 	if (current_char == ASCII_DEL)
 		ft_putnbr(DEL);
 	else
@@ -100,7 +100,7 @@ DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US       DEL")[index];
 		ft_putchar(' ');
 	current_char = (current_char + 1) * 3;
 	write(1, "- ", 2);
-	write(1, &char_symbol[current_char], 3);
+	write(1, &char_str[current_char], 3);
 	write(1, " |  ", 4);
 	if (*column_nbr == NBR_COLUMNS)
 	{
