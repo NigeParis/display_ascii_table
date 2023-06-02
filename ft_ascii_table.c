@@ -6,7 +6,7 @@
 /*   By: nigelrobinson <Nige@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 08:06:29 by nigelrobinson     #+#    #+#             */
-/*   Updated: 2023/06/02 15:33:57 by nigelrobinson    ###   ########.fr       */
+/*   Updated: 2023/06/02 15:57:41 by nigelrobinson    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_putnbr(int nbr);
 void	ft_putchar(char c);
 
 /**
-*	main function calls two functions to print two tables 
+*	main function calls two functions and prints two tables 
 *	non-printable and printable caracters of the ascii table
 */
 
@@ -57,6 +57,10 @@ void	ft_ascii_table(void)
 	ft_putchar('\n');
 }
 
+/**
+*	Prints to screen the printable caracters
+*/
+
 void	ft_printable_ascii(int *counter, int ascii_number)
 {
 	ft_putchar(ascii_number);
@@ -73,30 +77,30 @@ void	ft_printable_ascii(int *counter, int ascii_number)
 	}
 }
 
+/**
+*	Prints to screen the symbols of non printable caracters
+*/
+
 void	ft_non_printable_ascii(int *counter, int ascii_number)
 {
-	char array[STRINGSIZE];	
-	int i;
+	int		index;
+	char	char_symbol [STRINGSIZE];
 
-	i = 0;
-
-	while ((i++) < STRINGSIZE)
-		array[i] = ("  NULSOHSTXETXEOTENQACKBELBS HT LF VT FF CR SO SI \
-DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US    DEL")[i];
-
-
+	index = 0;
+	while ((index++) < STRINGSIZE)
+		char_symbol[index] = ("  NULSOHSTXETXEOTENQACKBELBS HT LF VT FF CR SO SI \
+DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US    DEL")[index];
 	if (ascii_number == 34)
 		ft_putnbr(127);
 	else
-	{
 		ft_putnbr((ascii_number - 1));
+	if (ascii_number < 34)
 		ft_putchar(' ');
-	}
 	ascii_number = ascii_number * 3;
 	if ((ascii_number / 3) < TEN)
 		ft_putchar(' ');
 	write(1, "- ", 2);
-	write(1, &array[(ascii_number -1)], 3);
+	write(1, &char_symbol[(ascii_number -1)], 3);
 	write(1, " |  ", 4);
 	if (*counter == NBR_COLUMNS)
 	{
