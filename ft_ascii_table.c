@@ -6,7 +6,7 @@
 /*   By: nigelrobinson <Nige@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 08:06:29 by nigelrobinson     #+#    #+#             */
-/*   Updated: 2023/06/02 15:11:16 by nigelrobinson    ###   ########.fr       */
+/*   Updated: 2023/06/02 15:29:23 by nigelrobinson    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,28 @@
 #define ASCII_PRINTABLE 32
 #define NBR_COLUMNS 6
 #define TEN 11
+#define STRINGSIZE 103
 
-void	ft_putchar(char c);
-void	ft_putnbr(int nbr);
-void	ft_printable_ascii(int *counter, int ascii_number);
 void	ft_ascii_table(void);
+void	ft_printable_ascii(int *counter, int ascii_number);
 void	ft_non_printable_ascii(int *counter, int ascii_number);
+void	ft_putnbr(int nbr);
+void	ft_putchar(char c);
 
 void	ft_ascii_table(void)
 {
 	int	ascii_number;
 	int	newline_counter;
-	int	count;
+	int	counter;
 
 	ascii_number = ASCII_PRINTABLE;
 	newline_counter = 1;
-	count = 1;
+	counter = 1;
 	write(1, "\n\nNon - printable caracters of the ascii table\n\n", 49);
-	while (count <= ASCII_PRINTABLE)
+	while (counter <= ASCII_PRINTABLE)
 	{
-		ft_non_printable_ascii(&newline_counter, count);
-		count++;
+		ft_non_printable_ascii(&newline_counter, counter);
+		counter++;
 		newline_counter++;
 	}
 	ft_non_printable_ascii(&newline_counter, 34);
@@ -69,14 +70,14 @@ void	ft_printable_ascii(int *counter, int ascii_number)
 
 void	ft_non_printable_ascii(int *counter, int ascii_number)
 {
-	char array[101];	
+	char array[STRINGSIZE];	
 	int i;
 
 	i = 0;
 
-	while ((i++) < 100)
+	while ((i++) < STRINGSIZE)
 		array[i] = ("  NULSOHSTXETXEOTENQACKBELBS HT LF VT FF CR SO SI \
-DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US  DEL")[i];
+DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US    DEL")[i];
 
 
 	if (ascii_number == 34)
@@ -85,8 +86,8 @@ DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US  DEL")[i];
 	{
 		ft_putnbr((ascii_number - 1));
 		ft_putchar(' ');
-		ascii_number = ascii_number * 3;
 	}
+	ascii_number = ascii_number * 3;
 	if ((ascii_number / 3) < TEN)
 		ft_putchar(' ');
 	write(1, "- ", 2);
