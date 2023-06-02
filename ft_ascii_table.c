@@ -6,7 +6,7 @@
 /*   By: nigelrobinson <Nige@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 08:06:29 by nigelrobinson     #+#    #+#             */
-/*   Updated: 2023/06/02 10:49:55 by nigelrobinson    ###   ########.fr       */
+/*   Updated: 2023/06/02 11:07:19 by nigelrobinson    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_ascii_table(void)
 	ascii_number = ASCII_PRINTABLE;
 	newline_counter = 1;
 	count = 1;
-	ft_putchar('\n');
+	write(1, "\n\nNon - printable caracters of the ascii table\n\n", 49);
 	while (count <= ASCII_PRINTABLE)
 	{
 		ft_non_printable_char(&newline_counter, count);
@@ -96,8 +96,7 @@ void	ft_ascii_table(void)
 		newline_counter++;
 	}
 	ft_non_printable_char(&newline_counter, 34);
-	ft_putchar('\n');
-	ft_putchar('\n');
+	write(1, "\n\nPrintable caracters of the ascii table\n\n", 45);
 	newline_counter = 1;
 	while (ascii_number < ASCII_NBR_MAX)
 	{
