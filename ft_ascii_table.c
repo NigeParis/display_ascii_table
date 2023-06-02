@@ -6,23 +6,22 @@
 /*   By: nigelrobinson <Nige@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 08:06:29 by nigelrobinson     #+#    #+#             */
-/*   Updated: 2023/06/02 16:30:58 by nigelrobinson    ###   ########.fr       */
+/*   Updated: 2023/06/02 18:37:10 by nigelrobinson    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-#define ASCII_NBR_MAX 127
-#define ASCII_PRINTABLE 33
+#define ASCII_NBR_MAX 126
+#define PRINTABLE_CHAR 32
 #define NBR_COLUMNS 6
-#define TEN 11
 #define STRINGSIZE 103
 #define ASCII_DEL 34
 #define DEL 127
 
 void	ft_ascii_table(void);
-void	ft_printable_ascii(int *column_counter, int ascii_number);
-void	ft_non_printable_ascii(int *column_counter, int ascii_number);
+void	ft_print_printable_ascii(int *column_nbr, int current_char);
+void	ft_print_non_printable_ascii(int *column_nbr, int current_char);
 void	ft_putnbr(int nbr);
 void	ft_putchar(char c);
 
@@ -33,26 +32,26 @@ void	ft_putchar(char c);
 
 void	ft_ascii_table(void)
 {
-	int	ascii_number;
+	int	current_char;
 	int	column_counter;
 
-	ascii_number = 1;
+	current_char = 0;
 	column_counter = 1;
 	write(1, "\n\nNon - printable caracters of the ascii table\n\n", 49);
-	while (ascii_number < ASCII_PRINTABLE)
+	while (current_char < PRINTABLE_CHAR)
 	{
-		ft_non_printable_ascii(&column_counter, ascii_number);
-		ascii_number++;
+		ft_print_non_printable_ascii(&column_counter, (current_char));
+		current_char++;
 		column_counter++;
 	}
-	ft_non_printable_ascii(&column_counter, ASCII_DEL);
+	ft_print_non_printable_ascii(&column_counter, ASCII_DEL);
 	write(1, "\n\nPrintable caracters of the ascii table\n\n", 42);
 	column_counter = 1;
-	ascii_number = ASCII_PRINTABLE - 1;
-	while (ascii_number < ASCII_NBR_MAX)
+	current_char = PRINTABLE_CHAR;   /**/
+	while (current_char  <= ASCII_NBR_MAX)
 	{
-		ft_printable_ascii(&column_counter, ascii_number);
-		ascii_number++;
+		ft_print_printable_ascii(&column_counter, current_char);
+		current_char++;
 		column_counter++;
 	}
 	ft_putchar('\n');
@@ -62,19 +61,19 @@ void	ft_ascii_table(void)
 *	Prints to screen the printable caracters
 */
 
-void	ft_printable_ascii(int *column_counter, int ascii_number)
+void	ft_print_printable_ascii(int *column_nbr, int current_char)
 {
-	ft_putchar(ascii_number);
+	ft_putchar((current_char));
 	write(1, " - ", 3);
-	ft_putnbr(ascii_number);
+	ft_putnbr((current_char));
 	ft_putchar(' ');
-	if (ascii_number < 100)
+	if ((current_char) < 'd')
 		ft_putchar(' ');
 	write(1, " |  ", 4);
-	if (*column_counter == NBR_COLUMNS)
+	if (*column_nbr == NBR_COLUMNS)
 	{
 		ft_putchar('\n');
-		*column_counter = 0;
+		*column_nbr = 0;
 	}
 }
 
@@ -82,31 +81,31 @@ void	ft_printable_ascii(int *column_counter, int ascii_number)
 *	Prints to screen the symbols of non printable caracters
 */
 
-void	ft_non_printable_ascii(int *column_counter, int ascii_number)
+void	ft_print_non_printable_ascii(int *column_nbr, int current_char)
 {
 	int		index;
 	char	char_symbol [STRINGSIZE];
 
 	index = 0;
 	while ((index++) < STRINGSIZE)
-		char_symbol[index] = ("  NULSOHSTXETXEOTENQACKBELBS HT LF VT FF CR SO SI \
+		char_symbol[index] = ("   NULSOHSTXETXEOTENQACKBELBS HT LF VT FF CR SO SI \
 DLEDC1DC2DC3DC4NAKSYNETBCANEM SUBESCFS GS RS US    DEL")[index];
-	if (ascii_number == ASCII_DEL)
+	if ((current_char) == ASCII_DEL)
 		ft_putnbr(DEL);
 	else
-		ft_putnbr((ascii_number - 1));
-	if (ascii_number < ASCII_DEL)
+		ft_putnbr(current_char);
+	if (current_char < ASCII_DEL)
 		ft_putchar(' ');
-	ascii_number = ascii_number * 3;
-	if ((ascii_number / 3) < TEN)
+	if (current_char < 10)
 		ft_putchar(' ');
+	current_char = (current_char + 1) * 3;
 	write(1, "- ", 2);
-	write(1, &char_symbol[(ascii_number -1)], 3);
+	write(1, &char_symbol[current_char], 3);
 	write(1, " |  ", 4);
-	if (*column_counter == NBR_COLUMNS)
+	if (*column_nbr == NBR_COLUMNS)
 	{
 		ft_putchar('\n');
-		*column_counter = 0;
+		*column_nbr = 0;
 	}
 }
 
