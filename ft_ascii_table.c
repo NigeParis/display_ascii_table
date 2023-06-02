@@ -6,7 +6,7 @@
 /*   By: nigelrobinson <Nige@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 08:06:29 by nigelrobinson     #+#    #+#             */
-/*   Updated: 2023/06/02 15:29:23 by nigelrobinson    ###   ########.fr       */
+/*   Updated: 2023/06/02 15:33:57 by nigelrobinson    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	ft_printable_ascii(int *counter, int ascii_number);
 void	ft_non_printable_ascii(int *counter, int ascii_number);
 void	ft_putnbr(int nbr);
 void	ft_putchar(char c);
+
+/**
+*	main function calls two functions to print two tables 
+*	non-printable and printable caracters of the ascii table
+*/
 
 void	ft_ascii_table(void)
 {
