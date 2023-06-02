@@ -6,14 +6,14 @@
 /*   By: nigelrobinson <Nige@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 08:06:29 by nigelrobinson     #+#    #+#             */
-/*   Updated: 2023/06/02 15:57:41 by nigelrobinson    ###   ########.fr       */
+/*   Updated: 2023/06/02 16:16:55 by nigelrobinson    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
 #define ASCII_NBR_MAX 127
-#define ASCII_PRINTABLE 32
+#define ASCII_PRINTABLE 33
 #define NBR_COLUMNS 6
 #define TEN 11
 #define STRINGSIZE 103
@@ -33,21 +33,20 @@ void	ft_ascii_table(void)
 {
 	int	ascii_number;
 	int	newline_counter;
-	int	counter;
 
-	ascii_number = ASCII_PRINTABLE;
+	ascii_number = 1;
 	newline_counter = 1;
-	counter = 1;
 	write(1, "\n\nNon - printable caracters of the ascii table\n\n", 49);
-	while (counter <= ASCII_PRINTABLE)
+	while (ascii_number < ASCII_PRINTABLE)
 	{
-		ft_non_printable_ascii(&newline_counter, counter);
-		counter++;
+		ft_non_printable_ascii(&newline_counter, ascii_number);
+		ascii_number++;
 		newline_counter++;
 	}
 	ft_non_printable_ascii(&newline_counter, 34);
 	write(1, "\n\nPrintable caracters of the ascii table\n\n", 42);
 	newline_counter = 1;
+	ascii_number = ASCII_PRINTABLE - 1;
 	while (ascii_number < ASCII_NBR_MAX)
 	{
 		ft_printable_ascii(&newline_counter, ascii_number);
