@@ -6,7 +6,7 @@
 /*   By: nigelrobinson <Nige@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 08:06:29 by nigelrobinson     #+#    #+#             */
-/*   Updated: 2023/06/02 11:07:19 by nigelrobinson    ###   ########.fr       */
+/*   Updated: 2023/06/02 11:23:12 by nigelrobinson    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ void	ft_non_printable_char(int *counter, int ascii_number)
 		*counter = 0;
 	}
 }
+
+/**
+*	main function
+*/
 
 void	ft_ascii_table(void)
 {
